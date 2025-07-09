@@ -189,5 +189,16 @@ namespace HTrack
             Application.Current.Resources["PendingBrush"] = pendingBrush;
             Application.Current.Resources["OutlineBrush"] = outlineBrush;
         }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                if (e.Source == sender)
+                {
+                    this.DragMove();
+                }
+            }
+        }
     }
 }

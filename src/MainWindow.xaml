@@ -17,7 +17,8 @@
             CornerRadius="8" 
             BorderBrush="{StaticResource OutlineBrush}" 
             BorderThickness="1"
-            Opacity="0.95">
+            Opacity="0.95"
+            MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
