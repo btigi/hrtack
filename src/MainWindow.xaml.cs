@@ -219,5 +219,10 @@ namespace HTrack
                 }
             }
         }
+
+        private void ExitApp(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

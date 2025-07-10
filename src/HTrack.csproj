@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
+    <PackageReference Include="WPF-UI.Tray" Version="4.0.3" />
   </ItemGroup>
 
 </Project> 
