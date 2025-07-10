@@ -60,54 +60,6 @@
                           HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Hidden">
                 <StackPanel Name="HabitGridContainer" Orientation="Vertical">
-                    <!-- Day Labels -->
-                    <Grid Name="DayLabelsGrid" Margin="0,0,0,8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="S" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
-                            <TextBlock.Effect>
-                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
-                        <TextBlock Grid.Column="1" Text="M" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
-                            <TextBlock.Effect>
-                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
-                        <TextBlock Grid.Column="2" Text="T" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
-                            <TextBlock.Effect>
-                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
-                        <TextBlock Grid.Column="3" Text="W" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
-                            <TextBlock.Effect>
-                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
-                        <TextBlock Grid.Column="4" Text="T" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
-                            <TextBlock.Effect>
-                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
-                        <TextBlock Grid.Column="5" Text="F" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
-                            <TextBlock.Effect>
-                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
-                        <TextBlock Grid.Column="6" Text="S" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
-                            <TextBlock.Effect>
-                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
-                            </TextBlock.Effect>
-                        </TextBlock>
-                    </Grid>
-                    
                     <!-- Main Habit Grid -->
                     <UniformGrid Name="HabitGrid" Rows="7" Margin="0,10,0,10"/>
                 </StackPanel>
