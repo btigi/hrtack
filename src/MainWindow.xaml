@@ -4,8 +4,8 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:tray="http://schemas.lepo.co/wpfui/2022/xaml/tray"
         Title="Habit Tracker"
-        Height="200"
-        Width="800"
+        Height="275"
+        Width="1200"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -15,13 +15,16 @@
         Left="50"
         Top="50">
     
-    <Border Background="{StaticResource BackgroundBrush}" 
-            CornerRadius="8" 
-            BorderBrush="{StaticResource OutlineBrush}" 
-            BorderThickness="1"
-            Opacity="0.95"
+    <Border x:Name="MainBorder"
+            Background="{DynamicResource BackgroundBrush}" 
+            CornerRadius="0" 
+            BorderBrush="{DynamicResource OutlineBrush}" 
+            BorderThickness="2"
             MouseLeftButtonDown="Border_MouseLeftButtonDown">
-        <Grid Margin="10">
+        <Border.Effect>
+            <DropShadowEffect Color="#FF0080" BlurRadius="15" ShadowDepth="0" Opacity="0.7"/>
+        </Border.Effect>
+        <Grid Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -40,12 +43,17 @@
             
             <!-- Header -->
             <TextBlock Grid.Row="0" 
-                       Text="Habit Tracker" 
-                       FontSize="16" 
+                       Text="H A B I T   T R A C K E R" 
+                       FontSize="18" 
                        FontWeight="Bold" 
+                       FontFamily="Consolas, 'Courier New', monospace"
                        HorizontalAlignment="Center" 
-                       Margin="0,0,0,10"
-                       Foreground="#333"/>
+                       Margin="0,5,0,15"
+                       Foreground="#00FF00">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#00FF00" BlurRadius="10" ShadowDepth="0" Opacity="0.8"/>
+                </TextBlock.Effect>
+            </TextBlock>
             
             <!-- Habit Grid Container -->
             <ScrollViewer Grid.Row="1" 
@@ -53,26 +61,89 @@
                           VerticalScrollBarVisibility="Hidden">
                 <StackPanel Name="HabitGridContainer" Orientation="Vertical">
                     <!-- Day Labels -->
-                    <Grid Name="DayLabelsGrid" Margin="0,0,0,5">
+                    <Grid Name="DayLabelsGrid" Margin="0,0,0,8">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20"/>
-                            <ColumnDefinition Width="14"/>
-                            <ColumnDefinition Width="14"/>
-                            <ColumnDefinition Width="14"/>
-                            <ColumnDefinition Width="14"/>
-                            <ColumnDefinition Width="14"/>
-                            <ColumnDefinition Width="14"/>
-                            <ColumnDefinition Width="14"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" Text="M" FontSize="8" HorizontalAlignment="Center" Foreground="#666"/>
-                        <TextBlock Grid.Column="3" Text="W" FontSize="8" HorizontalAlignment="Center" Foreground="#666"/>
-                        <TextBlock Grid.Column="5" Text="F" FontSize="8" HorizontalAlignment="Center" Foreground="#666"/>
+                        <TextBlock Grid.Column="0" Text="S" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Text="M" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                        <TextBlock Grid.Column="2" Text="T" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                        <TextBlock Grid.Column="3" Text="W" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                        <TextBlock Grid.Column="4" Text="T" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                        <TextBlock Grid.Column="5" Text="F" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                        <TextBlock Grid.Column="6" Text="S" FontSize="10" FontFamily="Consolas, monospace" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#00FF00">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#00FF00" BlurRadius="5" ShadowDepth="0" Opacity="0.6"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
                     </Grid>
                     
                     <!-- Main Habit Grid -->
-                    <UniformGrid Name="HabitGrid" Rows="7" Margin="20,0,0,0"/>
+                    <UniformGrid Name="HabitGrid" Rows="7" Margin="0,10,0,10"/>
                 </StackPanel>
             </ScrollViewer>
+            
+            <!-- Scanning Line Animation -->
+            <Canvas Grid.Row="1" IsHitTestVisible="False" ClipToBounds="True">
+                <Rectangle x:Name="ScanLine" 
+                          Width="2" 
+                          Height="200"
+                          Canvas.Left="-10">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="Transparent" Offset="0"/>
+                            <GradientStop Color="#FF0080" Offset="0.5"/>
+                            <GradientStop Color="Transparent" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FF0080" BlurRadius="8" ShadowDepth="0" Opacity="1"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <Canvas.Triggers>
+                    <EventTrigger RoutedEvent="Canvas.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="ScanLine"
+                                               Storyboard.TargetProperty="(Canvas.Left)"
+                                               From="-10"
+                                               To="1210"
+                                               Duration="0:0:6"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Canvas.Triggers>
+            </Canvas>
         </Grid>
     </Border>
 </Window> 
