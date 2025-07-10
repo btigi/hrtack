@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,27 +39,45 @@ namespace HTrack
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            SetupDesktopPinning();
+            SetAsDesktopChild();
+            SetAsToolWindow();
+            SetNoActivate();
             CreateHabitGrid();
             GenerateDemoData();
         }
 
-        private void SetupDesktopPinning()
+        private void SetAsDesktopChild()
         {
-            try
+            ArrayList windowHandles = new ArrayList();
+            Interop.EnumedWindow callback = Interop.EnumWindowCallback;
+            Interop.EnumWindows(callback, windowHandles);
+
+            foreach (IntPtr windowHandle in windowHandles)
             {
-                var windowHandle = new WindowInteropHelper(this).Handle;
-                
-                // Set the window to stay at the bottom
-                SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
-                
-                // Make window click-through
-                // SetParent(windowHandle, GetDesktopWindow());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Desktop pinning failed: {ex.Message}");
-            }
+                IntPtr progmanHandle = Interop.FindWindowEx(windowHandle, IntPtr.Zero, "SHELLDLL_DefView", null);
+                if (progmanHandle != IntPtr.Zero)
+                {
+                    var interopHelper = new WindowInteropHelper(this);
+                    interopHelper.EnsureHandle();
+                    interopHelper.Owner = progmanHandle;
+                    break;
+                }
+            }            
+        }
+
+        public void SetAsToolWindow()
+        {
+            WindowInteropHelper wih = new WindowInteropHelper(this);
+            IntPtr dwNew = new IntPtr(((long)Interop.GetWindowLong(wih.Handle, Interop.GWL_EXSTYLE).ToInt32() | 128L | 0x00200000L) & 4294705151L);
+            Interop.SetWindowLong((nint)new HandleRef(this, wih.Handle), Interop.GWL_EXSTYLE, dwNew);
+        }
+
+        public void SetNoActivate()
+        {
+            IntPtr hwnd = new WindowInteropHelper(this).Handle;
+            IntPtr style = Interop.GetWindowLong(hwnd, Interop.GWL_EXSTYLE);
+            IntPtr newStyle = new IntPtr(style.ToInt64() | Interop.WS_EX_NOACTIVATE);
+            Interop.SetWindowLong(hwnd, Interop.GWL_EXSTYLE, newStyle);
         }
 
         private void CreateHabitGrid()
